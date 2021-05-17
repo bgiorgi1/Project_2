@@ -6,7 +6,9 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
-
+const db = require('./models');
+const axios = require('axios');
+const router= express.Router();
 
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
@@ -52,12 +54,65 @@ app.get('/', (req, res) => {
 // });
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/reviews', require('./controllers/reviews'));
+// app.use('/natparks', require('./controllers/natparks'));
 
 app.get('/profile', isLoggedIn, (req, res) => {
   const { id, name, email } = req.user.get(); 
   console.log('inside of profile')
   res.render('profile', { id, name, email });
 });
+
+// ---------------------------------------------
+
+app.get('/results', (req, res)=> {
+  const query = req.query['q'];
+  //const urlQuery = query.replace(/\s/g, '+')
+  const credentials = process.env.APIKEY;
+  axios.get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=Yellowstone`)
+  .then(response => {
+    console.log(response.data);
+    // res.render('index', {data:response.data});
+  })
+});
+
+// // Detail route? Let's find out.
+// app.get('/park/:park_id', (req, res) => {
+//   const park_id = req.params['park_id'];
+//   const credentials = process.env.APIKEY;
+//   //console.log(req.params);
+//   axios.get('https://developer.nps.gov/api/v1/parks?parkCode=acad&', {
+//     params: {
+//       apikey: credentials,
+//       i: park_id
+//     }
+//   })
+//   .then(response => {
+//     console.log(response.data);
+//     res.render('detail', {data:response.data});
+//   })
+
+// });
+
+
+// app.get('/routes', (req, res) => {
+//   const park_id = req.params['park_id'];
+//   const credentials = process.env.APIKEY;
+//   //console.log(req.params);
+//   axios.get('https://developer.nps.gov/api/v1/parks?parkCode=acad&', {
+//     params: {
+//       apikey: credentials,
+//       i: movie_id
+//     }
+//   })
+//   .then(response => {
+//     console.log(response.data);
+//     res.render('detail', {data:response.data});
+//   })
+
+// });
+// // --------------------------------------------------
+
 
 
 const PORT = process.env.PORT || 3000;
