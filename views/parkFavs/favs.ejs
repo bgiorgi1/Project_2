@@ -6,8 +6,7 @@
         <li>
             <h3><%= singlePark.name %></h3>
             <a class="btn btn-outline-primary" href="/details/<%=singlePark.name%>" role="button" >Details</a>
-
-            <button type="button" class="btn btn-outline-success">Review</button>
+            <a class="btn btn-outline-success" href="/reviews/new" role="button" >Review</a>
 
                 <button class="btn btn-outline-danger" method="POST" action="/favs/<%= singlePark.id %>?_method=DELETE">Delete</button>
             </form>
