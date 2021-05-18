@@ -5,7 +5,7 @@
     <% favPark.forEach((singlePark)=>{ %>
         <li>
             <h3><%= singlePark.name %></h3>
-            <a href="/details/<%= singlePark.parkId%>">Details</a>
+            <a href="/details/<%=singlePark.parkName%>">Details</a>
         </li>
     <% }) %> 
 </ul>

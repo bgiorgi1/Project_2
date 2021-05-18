@@ -103,16 +103,37 @@ app.get('/favs', (req,res)=>{
 
 
 // select details from favs page and redirect with details to details page
-app.get('/details/:parkName', (req,res) => {
+app.get('/details', (req,res) => {
   const query = req.params.parkName;
   const credentials = process.env.APIKEY;
   axios.get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=${query}`)
   .then(response => {
     const parkInfo = response.data
         console.log(parkInfo)
-        res.render('details', {data:parkInfo});
+        res.render('details', {data:response.data});
       })
     });
+
+
+    app.post("/details", async function (req, res) {
+      const newFav = { name: req.body.name };
+      try {
+        const isInFavs = await db.fav.findAll({ where: newFav });
+        if (isInFavs.length > 0) {
+          res.send({
+            message: "Park already a favorite",
+            redirect: "http://localhost:3000/",
+          });
+        } else {
+          const newParkFav = await db.fav.create(newFav);
+          console.log(newParkFav.name, "created.")
+          res.redirect('/details/')
+        }
+      } catch (err) {
+        res.send("something went wrong trying to create favs");
+      }
+    });
+    
 // // --------------------------------------------------
 
 
