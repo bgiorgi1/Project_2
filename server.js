@@ -65,52 +65,54 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 // ---------------------------------------------
 
-app.get('/results', (req, res)=> {
-  const query = req.query['q'];
+app.get('/results/:parkName', (req, res)=> {
+  const query = req.query.q;
   //const urlQuery = query.replace(/\s/g, '+')
+  console.log(query)
   const credentials = process.env.APIKEY;
-  axios.get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=Yellowstone`)
+  axios.get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=${query}`)
   .then(response => {
     console.log(response.data);
-    // res.render('index', {data:response.data});
+    res.render('searchresult', {data:response.data});
   })
 });
 
-// // Detail route? Let's find out.
-// app.get('/park/:park_id', (req, res) => {
-//   const park_id = req.params['park_id'];
-//   const credentials = process.env.APIKEY;
-//   //console.log(req.params);
-//   axios.get('https://developer.nps.gov/api/v1/parks?parkCode=acad&', {
-//     params: {
-//       apikey: credentials,
-//       i: park_id
-//     }
-//   })
-//   .then(response => {
-//     console.log(response.data);
-//     res.render('detail', {data:response.data});
-//   })
+//getting park info 
+app.post('/favs', (req,res)=>{
+  const parkFav = {
+    name: req.body.name,
+    parkId: req.body.parkId
+  };
+  //adding to favs
+  db.favs.create(parkFav)
+  .then(createdFav=>{
+    // console.log(createdFav)
+    res.redirect('favs');
+  })
+ });
+ //grabbing all favs in db and redirecting to favs page
+app.get('/favs', (req,res)=>{
+  db.favs.findAll()
 
-// });
+    .then(favPark => {
+      // console.log("here is fav park")
+      // console.log(favPark)
+       res.render('favs', {favPark})
+    })
+})
 
 
-// app.get('/routes', (req, res) => {
-//   const park_id = req.params['park_id'];
-//   const credentials = process.env.APIKEY;
-//   //console.log(req.params);
-//   axios.get('https://developer.nps.gov/api/v1/parks?parkCode=acad&', {
-//     params: {
-//       apikey: credentials,
-//       i: movie_id
-//     }
-//   })
-//   .then(response => {
-//     console.log(response.data);
-//     res.render('detail', {data:response.data});
-//   })
-
-// });
+// select details from favs page and redirect with details to details page
+app.get('/details/:parkName', (req,res) => {
+  const query = req.params.parkName;
+  const credentials = process.env.APIKEY;
+  axios.get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=${query}`)
+  .then(response => {
+    const parkInfo = response.data
+        console.log(parkInfo)
+        res.render('details', {data:parkInfo});
+      })
+    });
 // // --------------------------------------------------
 
 

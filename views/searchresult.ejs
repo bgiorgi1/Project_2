@@ -1,0 +1,15 @@
+<h2>Here are the results</h2>
+<img src="<%= data.data[0].images[0].url %>" alt="image of <%= data.data[0].fullname %>" style="height: 300px; width: auto;">
+<li> <%= data.data[0].fullName  %></li>
+<li>State: <%= data.data[0].states  %></li>
+<li>Description: <%= data.data[0].description  %></li>
+<% data.data[0].activities.forEach(activity => { %>
+<li> <%= activity.name %> </li>
+<% })  %> 
+
+
+<form action="/favs" method="POST">
+    <input type="hidden" name="name" value="<%= data.data[0].fullName %>">
+    <input type="hidden" name="description" value="<%= data.data[0].description %>">
+    <input type="submit" value="Add to Favorites">
+</form>
