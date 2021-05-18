@@ -1,7 +1,11 @@
 <h1>National Park Search</h1>
-<p>Search for a park below...</p>
 
-<form action="/results/:parkName" method="GET">
-    <input type="search" name="q" placeholder="Enter Park Name">
-    <input type="submit">
-</form>
+
+
+<% if(currentUser) { %>
+    <p>Search for a park below...</p>
+    <form action="/results/:parkName" method="GET">
+      <input type="search" name="q" placeholder="Enter Park Name" />
+      <input type="submit" />
+    </form>
+<% } %> 
