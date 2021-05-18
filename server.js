@@ -9,6 +9,7 @@ const isLoggedIn = require("./middleware/isLoggedIn");
 const db = require("./models");
 const axios = require("axios");
 const router = express.Router();
+const methodOverride = require("method-override")
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
@@ -19,6 +20,7 @@ app.use(require("morgan")("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.use(layouts);
+app.use(methodOverride('_method'));
 
 app.use(
   session({
@@ -49,6 +51,8 @@ app.get("/", (req, res) => {
 
 app.use("/auth", require("./controllers/auth"));
 app.use("/reviews", require("./controllers/reviews"));
+app.use("/favs", require("./controllers/favs"));
+
 // app.use('/natparks', require('./controllers/natparks'));
 
 app.get("/profile", isLoggedIn, (req, res) => {
@@ -72,29 +76,7 @@ app.get("/results/:parkName", (req, res) => {
     });
 });
 
-//getting park info
-app.post("/favs", (req, res) => {
-  const parkFav = {
-    name: req.body.name,
-    parkId: req.body.parkId,
-  };
-  //adding to favs
-  db.favs.create(parkFav).then((createdFav) => {
-    // console.log(createdFav)
-    res.redirect("favs");
-  });
-});
-//grabbing all favs in db and redirecting to favs page
-app.get("/favs", (req, res) => {
-  db.favs
-    .findAll()
 
-    .then((favPark) => {
-      // console.log("here is fav park")
-      // console.log(favPark)
-      res.render("favs", { favPark });
-    });
-});
 
 // select details from favs page and redirect with details to details page
 app.get("/details/:parkName", (req, res) => {
