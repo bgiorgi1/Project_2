@@ -11,11 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.favs.hasMany(models.reviews)
+      models.favs.belongsTo(models.user)
     }
   };
   favs.init({
     name: DataTypes.STRING,
-    parkId: DataTypes.STRING
+    parkId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'favs',

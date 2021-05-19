@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      parkId: {
+        type: Sequelize.INTEGER
+      },
       userId: {
         type: Sequelize.INTEGER
       },
@@ -19,6 +22,12 @@ module.exports = {
       },
       description: {
         type: Sequelize.STRING
+      },
+      ratings: {
+        type: Sequelize.INTEGER
+      },
+      favId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

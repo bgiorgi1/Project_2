@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 
     .then((resultReviews) => {
       // console.log("here is fav park");
-      // console.log(favPark);
+      console.log(resultReviews);
       res.render("reviews/index", { resultReviews });
     });
 });
@@ -33,5 +33,28 @@ router.post("/", async (req, res) => {
   res.redirect("/reviews");
 });
 
+router.delete("/:id", (req, res) => {
+  db.reviews.destroy({
+    where: { id: req.params.id },
+  });
+  res.redirect("/reviews");
+});
+
+
+
 module.exports = router;
+
+// app.delete("/someResource/:id", async (req,res=>{
+//   try{
+//   const id = req.params.id
+//   const foundResource = await db.resourceModel.destroy({where: {id})
+//   if(foundResource){
+//     console.log(foundResource)
+//     res.redirect('/someResource')
+//   }
+//   }catch(err){
+//     console.log(err)
+//     res.redirect('/someResource/:id')
+//   }
+//   })
 

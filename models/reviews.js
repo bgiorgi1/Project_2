@@ -12,13 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.reviews.belongsTo(models.user);
+      models.reviews.belongsTo(models.favs)
     }
   };
   reviews.init({
+    parkId:DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     date: DataTypes.DATE,
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    ratings: DataTypes.INTEGER,
+    favId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'reviews',

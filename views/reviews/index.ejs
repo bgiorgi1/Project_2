@@ -1,1 +1,7 @@
 <h1>Reviews page</h1>
+
+<% resultReviews.forEach((singlePark)=>{ %>
+    <p><%= singlePark.name %></p>
+    <p><%= singlePark.description %></p>
+    <form method="POST" action="/reviews/<%= singlePark.id %>?_method=DELETE"><button class="btn btn-outline-danger" >Delete</button></form>
+    <% }) %> 

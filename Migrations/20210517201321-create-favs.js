@@ -12,7 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       parkId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
+      },
+      userId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
