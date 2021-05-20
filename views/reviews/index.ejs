@@ -1,15 +1,17 @@
 <h1>Reviews page</h1>
 
-<% resultReviews.forEach((singlePark)=>{ %>
-    <p><%= singlePark.name %></p>
-    <p><%= singlePark.description %></p>
-    <form method="POST" action="/reviews/<%= singlePark.id %>?_method=DELETE"><button class="btn btn-outline-danger" >Delete</button></form>
+<% resultReviews.forEach((singleReview)=>{ %>
+<% if (singleReview.userId === currentUser.id) {%>
 
+    <p><%= singleReview.name %> - <%= singleReview.description %></p>
+    
+    <form method="POST" action="/reviews/<%= singleReview.id %>?_method=DELETE"><button class="btn btn-outline-danger" >Delete</button></form>
 
-    <form method="POST" action="/reviews/edit/<%= singlePark.id %>?_method=PUT">
-        <input type="text" name="reviewName">
-        <input type="text" name="reviewDescription">
+ 
+    <form method="POST" action="/reviews/edit/<%= singleReview.id %>?_method=PUT">
+        <input type="text" name="reviewName" placeholder="Enter Park Name">
+        <input type="text" name="reviewDescription" placeholder="Enter Comment">
         <button class="btn btn-outline-success">Edit</button>
     </form>
-
+<% } %>
     <% }) %> 

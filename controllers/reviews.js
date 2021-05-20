@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("../config/ppConfig");
 const db = require("../models"); //bring in database
 const methodOverride = require('method-override');
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 // app.use(methodOverride('_method'));
 // router.get("/", async (req, res) => {
@@ -11,7 +12,7 @@ const methodOverride = require('method-override');
 //   res.render("reviews/index", { review: fetchReviews });
 // });
 
-router.get("/", (req, res) => {
+router.get("/", isLoggedIn, (req, res) => {
   db.reviews
     .findAll()
 
@@ -22,20 +23,20 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   res.render("reviews/new");
 });
 
-router.post("/", async (req, res) => {
+router.post("/", isLoggedIn, async (req, res) => {
   const { name, description } = req.body;
   console.log(name, description);
 
-  const newReview = await db.reviews.create({ name, description });
+  const newReview = await db.reviews.create({ name, description, userId: req.user.id });
   console.log(newReview);
   res.redirect("/reviews");
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", isLoggedIn, (req, res) => {
   db.reviews.destroy({
     where: { id: req.params.id },
   });
@@ -44,7 +45,7 @@ router.delete("/:id", (req, res) => {
 
 //---------------------------------------------------
 // trying to edit review
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', isLoggedIn, (req, res) => {
   db.reviews.update(
     {name: req.body.reviewName,
     description: req.body.reviewDescription},
