@@ -4,4 +4,12 @@
     <p><%= singlePark.name %></p>
     <p><%= singlePark.description %></p>
     <form method="POST" action="/reviews/<%= singlePark.id %>?_method=DELETE"><button class="btn btn-outline-danger" >Delete</button></form>
+
+
+    <form method="POST" action="/reviews/edit/<%= singlePark.id %>?_method=PUT">
+        <input type="text" name="reviewName">
+        <input type="text" name="reviewDescription">
+        <button class="btn btn-outline-success">Edit</button>
+    </form>
+
     <% }) %> 

@@ -110,6 +110,10 @@ app.post("/details", async function (req, res) {
   }
 });
 
+app.get("/index", (req, res) => {
+  res.render("index");
+});
+
 // // --------------------------------------------------
 
 const PORT = process.env.PORT || 3000;

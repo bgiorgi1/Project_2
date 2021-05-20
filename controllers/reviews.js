@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const passport = require("../config/ppConfig");
 const db = require("../models"); //bring in database
+const methodOverride = require('method-override');
 
+// app.use(methodOverride('_method'));
 // router.get("/", async (req, res) => {
 //   //grab all reviews from database
 //   const fetchReviews = await db.review.findall();
@@ -40,21 +42,53 @@ router.delete("/:id", (req, res) => {
   res.redirect("/reviews");
 });
 
+//---------------------------------------------------
+// trying to edit review
+router.put('/edit/:id', (req, res) => {
+  db.reviews.update(
+    {name: req.body.reviewName,
+    description: req.body.reviewDescription},
+    {
+      where: { id: req.params.id }
+    }
+  )
+  .then((updatedReview) => {
+    console.log('success', updatedReview)
+    res.redirect('/reviews')
+  })
+  .catch((err) => {
+    console.log(err)
+    res.render('main/404')
+  })
+})
+
+// router.get('/edit/:id', (req, res) => {
+//   db.reviews.findOne({
+//     where: { id: req.params.id }
+//   })
+//   .then((foundArticle) => {
+//     db.reviews.findAll()
+//     .then((authors) => {
+//       res.render('articles/edit', {
+//         article: foundArticle,
+//         authors: authors
+//       })
+//     })
+//     .catch((err) => {
+//       console.log(err)
+//       res.render('main/404')
+//     })
+//   })
+//   .catch((err) => {
+//     console.log('Error in /articles/edit/:id', err)
+//     res.render('main/404')
+//   })
+// })
+
+
 
 
 module.exports = router;
 
-// app.delete("/someResource/:id", async (req,res=>{
-//   try{
-//   const id = req.params.id
-//   const foundResource = await db.resourceModel.destroy({where: {id})
-//   if(foundResource){
-//     console.log(foundResource)
-//     res.redirect('/someResource')
-//   }
-//   }catch(err){
-//     console.log(err)
-//     res.redirect('/someResource/:id')
-//   }
-//   })
+
 
