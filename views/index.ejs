@@ -1,11 +1,13 @@
-<h1>National Park Search</h1>
-
-
 
 <% if(currentUser) { %>
-    <p>Search for a park below...</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">National Park Search</h1>
+    <p class="lead">Search for a park below...</p>
     <form action="/results/:parkName" method="GET">
       <input type="search" name="q" placeholder="Enter Park Name" />
       <input type="submit" />
     </form>
+  </div>
+</div>
 <% } %> 

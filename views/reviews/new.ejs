@@ -1,13 +1,16 @@
-<h2>Leave a Comment</h2>
 
-<form action="/reviews" method="POST">
-  <label for="name">Park Name</label>
-  <input required type="text" id="name" name="name" />
-
-  <label for="description">Description</label>
-  <input required type="text" id="description" name="description" />
-
-  <button type="submit"> Log Comment </button>
-</form>
-
-
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Leave a comment</h1>
+      <p class="lead">
+          <form action="/reviews" method="POST">
+        <label for="name">Park Name</label>
+        <input required type="text" id="name" name="name" />
+      
+        <label for="description">Description</label>
+        <input required type="text" id="description" name="description" />
+      
+        <button type="submit"> Log Comment </button>
+      </form></p>
+    </div>
+  </div>

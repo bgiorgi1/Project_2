@@ -5,8 +5,10 @@ nav ul li {
 }
 
 h1 {
-  color: chartreuse;
+  color:navy;
 }
 
 
-
+body {
+  min-height: 99vh;
+}
