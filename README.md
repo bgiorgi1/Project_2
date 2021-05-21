@@ -1,5 +1,3 @@
-# parkBook
-
 # Express Authentication
 
 Express authentication template using Passport + Flash messages + custom middleware
