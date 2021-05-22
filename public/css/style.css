@@ -12,3 +12,9 @@ h1 {
 body {
   min-height: 99vh;
 }
+
+.list-group-item {
+  border: 2px solid 
+  navy;
+  margin-bottom: 20px;
+}

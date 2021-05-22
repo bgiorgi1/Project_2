@@ -1,25 +1,28 @@
 
-
-<div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">My Notes</h1>
       <div class = "row mb-3"
       <p class="lead"><% resultReviews.forEach((singleReview)=>{ %>
         <% if (singleReview.userId === currentUser.id) {%>
-        
+            <ul class="list-group list-group-flush"></ul>
+            <div class="list-group-item">
             <p><%= singleReview.name %> - <%= singleReview.description %></p>
             
-            <form method="POST" action="/reviews/<%= singleReview.id %>?_method=DELETE"><button class="btn btn-outline-danger" >Delete</button></form></br>
+          
         
-         
+            
+
             <form method="POST" action="/reviews/edit/<%= singleReview.id %>?_method=PUT">
-                <input type="text" name="reviewName" placeholder="Enter Park Name">
-                <input type="text" name="reviewDescription" placeholder="Enter Comment">
+                <input class="form-control input-lg" id="inputlg" type="text" name="reviewName" placeholder="Enter Park Name"><br>
+                <input class="form-control input-lg" id="inputlg" type="text" name="reviewDescription" placeholder="Enter Comment">
                 <button class="btn btn-outline-success">Edit</button>
             </form>
+            <form method="POST" action="/reviews/<%= singleReview.id %>?_method=DELETE"><button class="btn btn-outline-danger" >Delete</button></form><br>
+        </div>
+   
         <% } %>
             <% }) %> </p>
+            
     </div>
   </div>
-
-
