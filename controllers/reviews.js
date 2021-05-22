@@ -44,7 +44,7 @@ router.delete("/:id", isLoggedIn, (req, res) => {
 });
 
 //---------------------------------------------------
-// trying to edit review
+// trying to edit comment
 router.put('/edit/:id', isLoggedIn, (req, res) => {
   db.reviews.update(
     {name: req.body.reviewName,

@@ -1,9 +1,21 @@
-<h1> Welcome to <%= data.data[0].fullName  %></h1>
-<img src="<%= data.data[0].images[0].url %>" alt="image of <%= data.data[0].fullname %>" style="height: 300px; width: auto;">
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
 
-<p>State: <%= data.data[0].states  %></p>
+<h1 class="d-flex justify-content-center"> Welcome to <%= data.data[0].fullName  %></h1>
+<div class="d-flex justify-content-center"><img src="<%= data.data[0].images[0].url %>" alt="image of <%= data.data[0].fullname %>" style="height: 300px; width: auto;"></div> <br>
 
-<p>More information: <a href=" <%= data.data[0].url %>"><%= data.data[0].url %></a></p>
+
+
+
+
+
+<form action="/favs" method="POST" class="d-flex justify-content-center">
+  <input type="hidden" name="name" value="<%= data.data[0].fullName %>">
+  <input type="hidden" name="description" value="<%= data.data[0].description %>">
+  <input type="submit" value="Add to Favorites">
+</form>
+<br>
 
 
 <div class="accordion" id="accordionExample">
@@ -44,13 +56,11 @@ Weather Information      </button>
     </div>
   </div>
 </div>
+<br>
 
 
+<p>More information: <a href=" <%= data.data[0].url %>"><%= data.data[0].url %></a></p>
 
-<form action="/favs" method="POST">
-    <input type="hidden" name="name" value="<%= data.data[0].fullName %>">
-    <input type="hidden" name="description" value="<%= data.data[0].description %>">
-    <input type="submit" value="Add to Favorites">
-</form>
-
-
+</div>
+</div>
+</div>
