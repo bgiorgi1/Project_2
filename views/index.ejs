@@ -7,11 +7,30 @@
     <div class="container">
       <h1 class="display-4">National Park Search</h1>
       <p class="lead">Search for a park below...</p>
+      <div class="container">
       <form action="/results/:parkName" method="GET">
-        <input type="search" name="q" placeholder="Enter Park Name" />
-        <input type="submit" />
+        <input class="textarea" type="search" name="q" placeholder="Enter Park Name" />
+        <input class="button1" type="submit" />
       </form>
     </div>
   </div>
+</div>
+
+  <% } else { %>
+    
+    
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, adventurer!</h1>
+      <p class="lead"> Welcome to parkBook. A place to search, navigate, and journal your way through 423 National parks.</p>
+      <hr class="my-4">
+      <p>We're happy you're here! Click the button below to signup.</p>
+      <p class="lead">
+        <a class="button1" href="/auth/signup" role="button">Signup</a>
+      </p>
+    </div>
+
   <% } %> </div>
 </div>
+
+
+

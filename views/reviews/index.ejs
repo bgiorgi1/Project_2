@@ -16,18 +16,33 @@
             
           
         
-            
+            <div class="container">
+                <div class="row">
+                  <div class="col-4">
+
+
             <form method="POST" action="/reviews/edit/<%= singleReview.id %>?_method=PUT">
-                <input class="form-control input-lg" id="inputlg" type="text" name="reviewName" placeholder="Enter Park Name"><br>
-                <input class="form-control input-lg" id="inputlg" type="text" name="reviewDescription" placeholder="Enter Comment"><br>
-                <div class="container">
+                <input class="form-control input-lg" id="inputlg" type="text" name="reviewName" placeholder="Enter Park Name">
+
+            </div>
+            <div class="col-5">
+
+                <input class="form-control input-lg" id="inputlg" type="text" name="reviewDescription" placeholder="Enter Comment">
+
+            </div>
+            <div class="col">
+                
+                <!-- <div class="container">
                     <div class="row">
-                      <div class="col-sm">
-                <button class="btn btn-outline-success">Edit</button>
+                      <div class="col-sm"> -->
+                <button class="button1">Edit</button>
             </form>
+
+       
+
         </div>
         <div class="col-sm">
-            <form method="POST" action="/reviews/<%= singleReview.id %>?_method=DELETE"><button class="btn btn-outline-danger" >Delete</button></form><br>
+            <form method="POST" action="/reviews/<%= singleReview.id %>?_method=DELETE"><button class="button1" >Delete</button></form><br>
         </div>
     </div>
 </div>
@@ -38,5 +53,9 @@
             
     </div>
   </div>
+</div>
+</div>
+
+</div>
 </div>
 </div>

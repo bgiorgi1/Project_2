@@ -19,19 +19,19 @@
                         <div class="d-flex flex-row">
                             <div class="p-2">
 
-                <a class="btn btn-outline-primary" href="/details/<%=singlePark.name%>" role="button" >Details</a>
+                <a class="button1" href="/details/<%=singlePark.name%>" role="button" >Details</a>
 
             </div>
 <div class="p-2">
 
-                <a class="btn btn-outline-success" href="/reviews/new" role="button" >Comment</a>
+                <a class="button1" href="/reviews/new" role="button" >Comment</a>
 
             </div>
 <div class="p-2">
 
     
              <form  method="POST" action="/favs/<%= singlePark.id %>?_method=DELETE">
-                <button class="btn btn-outline-danger" type="submit">Delete</button>
+                <button class="button1" type="submit">Delete</button>
             </form>
 
             </li>

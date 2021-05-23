@@ -45,6 +45,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
 // app.get('/profile', (req, res) => {
 //   res.render('profile');
 // });
@@ -114,6 +115,9 @@ app.get("/index", (req, res) => {
   res.render("index");
 });
 
+app.get("*", (req, res) => res.render("404", { url: req.path }));
+
+
 // // --------------------------------------------------
 
 const PORT = process.env.PORT || 3000;
@@ -122,3 +126,5 @@ const server = app.listen(PORT, () => {
 });
 
 module.exports = server;
+
+
