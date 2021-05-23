@@ -56,3 +56,32 @@ body {
   left: 100px;
 }
 
+
+nav {
+	height: min-content;
+	font-family: 'Playfair Display', serif;
+  background-color: navy;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline;
+  padding: 8px;
+  overflow: hidden;
+  background-color: navy;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
