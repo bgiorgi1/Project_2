@@ -78,13 +78,21 @@ app.get("/results/:parkName", (req, res) => {
 // select details from favs page and redirect with details to details page
 app.get("/details/:parkName", (req, res) => {
   const query = req.params.parkName;
+  console.log(query)
   const credentials = process.env.APIKEY;
   axios
-    .get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=${query}`)
+    .get(`https://${credentials}@developer.nps.gov/api/v1/parks?limit=423`)
     .then((response) => {
-      const parkInfo = response.data;
-      console.log(parkInfo);
-      res.render("details", { data: response.data });
+      const parkInfo = response.data.data;
+      console.log(parkInfo.length);
+      for (let i=0; i < parkInfo.length; i++) {
+        let park = parkInfo[i]
+        console.log(park.fullName)
+        if (park.fullName === query) {
+          res.render("details", { data: park });
+        }
+      }
+      
     });
 });
 

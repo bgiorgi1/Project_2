@@ -2,8 +2,8 @@
     <div class="row">
       <div class="col-sm">
   
-  <h1 class="d-flex justify-content-center"> Welcome to <%= data.data[0].fullName  %></h1>
-  <div class="d-flex justify-content-center"><img src="<%= data.data[0].images[0].url %>" alt="image of <%= data.data[0].fullname %>" style="height: 300px; width: auto;"></div> <br>
+  <h1 class="d-flex justify-content-center"> Welcome to <%= data.fullName  %></h1>
+  <div class="d-flex justify-content-center"><img src="<%= data.images[0].url %>" alt="image of <%= data.fullname %>" style="height: 300px; width: auto;"></div> <br>
   
   
   
@@ -15,7 +15,7 @@
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <p> <%= data.data[0].description  %></p>
+          <p> <%= data.description  %></p>
   
         </div>
       </div>
@@ -27,7 +27,7 @@
       </h2>
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <% data.data[0].activities.forEach(activity => { %>
+          <% data.activities.forEach(activity => { %>
             <p> <%= activity.name %> </p>
             <% })  %> 
         </div>
@@ -40,7 +40,7 @@
       </h2>
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <%= data.data[0].weatherInfo %>
+          <%= data.weatherInfo %>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
   <br>
   
   
-  <p>More information: <a href=" <%= data.data[0].url %>"><%= data.data[0].url %></a></p>
+  <p>More information: <a href=" <%= data.url %>"><%= data.url %></a></p>
   
   </div>
   </div>
