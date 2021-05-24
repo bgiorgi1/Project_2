@@ -21,7 +21,7 @@ BackEnd: Node.js, Express, Sequelize, Passport, Flash
 
 ### NPS API
 
-Offered by the National Park Service (NPS), this app holds information about all of the National Parks in the US.
+Offered by the National Park Service (NPS), this API holds information about all of the National Parks in the US.
 
 An example of how I used the API to search and render data:
 
