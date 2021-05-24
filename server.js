@@ -67,7 +67,7 @@ app.get("/profile", isLoggedIn, (req, res) => {
 app.get("/results/:parkName", (req, res) => {
   const query = req.query.q;
   //const urlQuery = query.replace(/\s/g, '+')
-  console.log(query);
+  // console.log(query);
   const credentials = process.env.APIKEY;
   axios
     .get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=${query}`)
