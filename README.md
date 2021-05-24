@@ -103,7 +103,7 @@ Here is an example of the if/else statement on the /index page. You can see the 
 
 I created two additional modals on top of the index.js and user.js models.
 
-#### The favs. js model
+#### The favs.js model
 ```javascript
 favs.init({
     name: DataTypes.STRING,
