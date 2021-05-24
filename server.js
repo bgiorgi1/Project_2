@@ -46,15 +46,12 @@ app.get("/", (req, res) => {
 });
 
 
-// app.get('/profile', (req, res) => {
-//   res.render('profile');
-// });
+
 
 app.use("/auth", require("./controllers/auth"));
 app.use("/reviews", require("./controllers/reviews"));
 app.use("/favs", require("./controllers/favs"));
 
-// app.use('/natparks', require('./controllers/natparks'));
 
 app.get("/profile", isLoggedIn, (req, res) => {
   const { id, name, email } = req.user.get();
@@ -66,8 +63,7 @@ app.get("/profile", isLoggedIn, (req, res) => {
 
 app.get("/results/:parkName", (req, res) => {
   const query = req.query.q;
-  //const urlQuery = query.replace(/\s/g, '+')
-  // console.log(query);
+  
   const credentials = process.env.APIKEY;
   axios
     .get(`https://${credentials}@developer.nps.gov/api/v1/parks?q=${query}`)
@@ -115,7 +111,6 @@ app.get("/index", (req, res) => {
   res.render("index");
 });
 
-app.get("*", (req, res) => res.render("404", { url: req.path }));
 
 
 // // --------------------------------------------------

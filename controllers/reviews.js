@@ -5,12 +5,7 @@ const db = require("../models"); //bring in database
 const methodOverride = require('method-override');
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-// app.use(methodOverride('_method'));
-// router.get("/", async (req, res) => {
-//   //grab all reviews from database
-//   const fetchReviews = await db.review.findall();
-//   res.render("reviews/index", { review: fetchReviews });
-// });
+
 
 router.get("/", isLoggedIn, (req, res) => {
   db.reviews
@@ -63,28 +58,6 @@ router.put('/edit/:id', isLoggedIn, (req, res) => {
   })
 })
 
-// router.get('/edit/:id', (req, res) => {
-//   db.reviews.findOne({
-//     where: { id: req.params.id }
-//   })
-//   .then((foundArticle) => {
-//     db.reviews.findAll()
-//     .then((authors) => {
-//       res.render('articles/edit', {
-//         article: foundArticle,
-//         authors: authors
-//       })
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//       res.render('main/404')
-//     })
-//   })
-//   .catch((err) => {
-//     console.log('Error in /articles/edit/:id', err)
-//     res.render('main/404')
-//   })
-// })
 
 
 
