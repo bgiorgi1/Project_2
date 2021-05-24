@@ -6,9 +6,10 @@ The web app designed for you to catalog your notes and memories of National Park
 
 parkBook has the ability to search for parks and then add them to a favorites list.  You can then comment your parks, edit and delete your comments.  As of right now, it is a travel journal for yourself to use to keep track of memories and/or notes about parks you wish to visit.
 
+
 # LANGUAGES/FRAMEWORKS USED
 This project was created using:  
-FontEnd: HTML,CSS, EJS, Bootstrap  
+FontEnd: HTML,CSS, EJS, Javascript, Bootstrap  
 BackEnd: Node.js, Express, Sequelize, Passport, Flash
 
 # HOW TO INSTALL
@@ -129,4 +130,4 @@ favs.init({
 
 
 # FUTURE CONSIDERATIONS
- I would like to expand this to be more of a social site, where national park lovers can unite and share wisdom about the parks they've visited as well as their travel plans for the ones coming up!
+ I would like to expand this to be more of a social site, where national park lovers can unite, share wisdom, and leave reviews about the parks they've visited as well as their travel plans for the ones coming up!
